@@ -58,7 +58,6 @@
   Carousel.prototype.setPaneDimensions = function() {
     this.pane_width = this.$element.width();
 
-    console.log('%c this.pane_width = ' + this.pane_width, 'color: green');
     var self = this;
     this.$panes.each(function() {
       $(this).width(self.pane_width);
@@ -79,8 +78,6 @@
 
 
   Carousel.prototype.showPane = function(index) {
-    console.log('%c show pane ' + index, 'color: green');
-
     // between the bounds
     index = Math.max(0, Math.min(index, this.pane_count-1));
     this.current_pane = index;
@@ -91,9 +88,6 @@
 
     this.$container.find('.carousel-active').removeClass('carousel-active');
     this.$active = $(this.$panes.get(index)).addClass('carousel-active');
-
-
-    console.log(this.$active.height());
 
     // update container height for following content
     this.$container.height(this.$active.height());
@@ -118,16 +112,10 @@
   };
 
   Carousel.prototype.next = function() {
-    console.log('%c next', 'color: green');
-
-    console.log(this.current_pane);
-
     return this.showPane(this.current_pane+1, true);
   };
 
   Carousel.prototype.prev = function() {
-    console.log('%c prev', 'color: green');
-
     return this.showPane(this.current_pane-1, true);
   };
 
@@ -136,8 +124,6 @@
     var self = this;
     // disable browser scrolling
     ev.gesture.preventDefault();
-
-    console.log(ev);
 
     if(this.init) {
       this.$panes.css('display', 'inline-block');
