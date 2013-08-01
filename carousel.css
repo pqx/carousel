@@ -9,6 +9,7 @@
   /*display: inline-block;*/
   display: none;
   text-align: center;
+  float: left;
 }
 .carousel-active {
   display: inline-block;
@@ -34,4 +35,12 @@
 }
 .carousel-control.right {
   right: 7px;
+}
+
+.details {
+  width: inherit;
+  padding: 10px;
+  box-sizing: border-box;
+  white-space: normal;
+  text-align: left;
 }
