@@ -6,7 +6,8 @@
   white-space: nowrap;
 }
 .carousel-item {
-  display: inline-block;
+  /*display: inline-block;*/
+  display: none;
   text-align: center;
 }
 .carousel-active {

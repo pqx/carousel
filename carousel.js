@@ -13,6 +13,7 @@
 
     this.$container = this.$element.find('.carousel-inner');
     this.$panes = this.$container.find(".carousel-item");
+    this.$active = this.$panes.first();
 
     this.pane_width = 0;
     this.pane_count = this.$panes.length;
@@ -33,22 +34,24 @@
       //updateOffset();
     });
 
+    this.init = true;
+    // this.showPane(0);
+
     // hammerjs tap with jquery mobile tap
     // control btn mainly for mouse usage
     // $('.carousel-control').hammer().on('tap', function(e) {
-    // var self = this;
-    // $('.carousel-control').on('click', function(e) {
+    $('.carousel-control').on('click', function(e) {
 
-    //   var $this = $(this);
-    //   var control = $this.attr('data-carousel');
+      var $this = $(this);
+      var control = $this.attr('data-carousel');
 
-    //   if(control === 'prev') {
-    //     self.prev();
-    //   } else if(control === 'next') {
-    //     self.next();
-    //   }
-    //   return false;
-    // });
+      if(control === 'prev') {
+        self.prev();
+      } else if(control === 'next') {
+        self.next();
+      }
+      return false;
+    });
   }
 
   Carousel.prototype.setPaneDimensions = function() {
@@ -77,7 +80,6 @@
   Carousel.prototype.showPane = function(index) {
     console.log('%c show pane ' + index, 'color: green');
 
-
     // between the bounds
     index = Math.max(0, Math.min(index, this.pane_count-1));
     this.current_pane = index;
@@ -87,7 +89,13 @@
     this.updateControl();
 
     this.$container.find('.carousel-active').removeClass('carousel-active');
-    $(this.$panes.get(index)).addClass('carousel-active');
+    this.$active = $(this.$panes.get(index)).addClass('carousel-active');
+
+
+    console.log(this.$active.height());
+
+    // update container height for following content
+    this.$container.height(this.$active.height());
   };
 
 
@@ -128,7 +136,12 @@
     // disable browser scrolling
     ev.gesture.preventDefault();
 
-    console.log(ev);
+    // console.log(ev);
+
+    if(this.init) {
+      this.$panes.css('display', 'inline-block');
+      this.init = false;
+    }
 
     switch(ev.type) {
       case 'dragright':
