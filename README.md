@@ -7,7 +7,7 @@ carousel plugin with jquery and hammer.js
 
 [Hammer.js carousel example](https://github.com/twbs/bootstrap/blob/master/js/bootstrap-carousel.js)
 
-## HTML markup
+### HTML markup
 ``` html
 <div class="carousel-wrap" id="js-carousel">
   <div class="carousel-inner">
@@ -37,7 +37,7 @@ carousel plugin with jquery and hammer.js
   </a>
 </div>
 ```
-## Usage
+### Usage
 ``` javascript
 $('#js-carousel').carousel(); // initialization
 $('#js-carousel').carousel('prev'); // action prev item
@@ -45,7 +45,7 @@ $('#js-carousel').carousel('next'); // action next item
 ```
 
 
-## TODO
+### TODO
 + Content loading dynamically
 + Carousel-item with full html page
 + Animation after 'release' with css transitions
