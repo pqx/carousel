@@ -21,13 +21,13 @@
     this.init();
 
     this.$element.hammer({ drag_lock_to_axis: true })
-      .on("release dragleft dragright swipeleft swiperight", handleHammer);
+      .on("release dragleft dragright swipeleft swiperight", $.proxy(this.handleHammer, this));
 
 
     // hammerjs tap with jquery mobile tap
     // control btn mainly for mouse usage
     // $('.carousel-control').hammer().on('tap', function(e) {
-    var self = this
+    var self = this;
     $('.carousel-control').on('click', function(e) {
 
       var $this = $(this);
@@ -44,12 +44,13 @@
 
 
   Carousel.prototype.init = function() {
+    var self = this;
     this.$panes.first().addClass('carousel-active');
     this.setPaneDimensions();
     this.updateControl();
 
     $(window).on("load resize orientationchange", function() {
-      this.setPaneDimensions();
+      self.setPaneDimensions();
       //updateOffset();
     });
   };
@@ -77,7 +78,7 @@
 
   Carousel.prototype.showPane = function(index) {
     // between the bounds
-    var index = Math.max(0, Math.min(index, self.pane_count-1));
+    index = Math.max(0, Math.min(index, self.pane_count-1));
     this.current_pane = index;
 
     var offset = -((100/self.pane_count)*self.current_pane);
@@ -115,7 +116,7 @@
   };
 
 
-  function handleHammer(ev) {
+  Carousel.prototype.handleHammer = function(ev) {
     var self = this;
     // disable browser scrolling
     ev.gesture.preventDefault();
@@ -133,7 +134,7 @@
           drag_offset *= 0.4;
         }
 
-        setContainerOffset(drag_offset + pane_offset);
+        self.setContainerOffset(drag_offset + pane_offset);
         break;
 
       case 'swipeleft':
@@ -159,7 +160,7 @@
         }
         break;
     }
-  }
+  };
 
   $.fn[pluginName] = function(options) {
     return this.each(function () {

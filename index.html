@@ -1,15 +1,24 @@
 <!DOCTYPE html>
 <html>
 
-  <meta name="viewport" content="width=device-width, initial-scale = 1.0,maximum-scale = 1.0">
+  <meta name="viewport" content="width = device-width,initial-scale = 1.0,maximum-scale = 1.0">
 
   <head>
     <title>carousel</title>
   </head>
   <link rel="stylesheet" type="text/css" href="carousel.css">
   <style type="text/css">
-  body { margin: 0; padding: 0;}
-  .container { width: 100% }
+  body { margin: 0; padding: 60px 0 60px 0;}
+  .container {
+    width: 60%;
+    margin: 0 auto;
+  }
+  /* Portrait */
+  @media screen and (orientation:portrait) {
+      .container {
+        width: 100%;
+      }
+  }
   </style>
   <script type="text/javascript" src="modernizr.js"></script>
 <body>
@@ -22,12 +31,17 @@
         </div>
 
         <div class="carousel-item">
+          <img src="http://auth.avisapp.no/page/ZUO_varingen/cl_image/9">
+        </div>
+
+        <div class="carousel-item">
           <img src="http://auth.avisapp.no/page/ZUO_varingen/cl_image/2">
         </div>
 
         <div class="carousel-item">
           <img src="http://auth.avisapp.no/page/ZUO_varingen/cl_image/3">
         </div>
+
       </div>
 
       <a class="left carousel-control" href="#" data-carousel="prev">
@@ -37,11 +51,24 @@
         <span class="entypo">next</span>
       </a>
     </div>
+
+    <div class="details">
+    </div>
   </div>
 
   <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="lipsum.js"></script>
   <script type="text/javascript" src="jquery.hammer.js"></script>
   <script type="text/javascript" src="carousel.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    $('.details').lipsum(4);
+
+    $('#js-carousel').carousel();
+  });
+
+  </script>
 
 </body>
 </html>
