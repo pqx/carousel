@@ -11,53 +11,51 @@
     this.element = element;
     this.$element = $(element);
 
-    this.$container = this.$element;
+    this.$container = this.$element.find('.carousel-inner');
     this.$panes = this.$container.find(".carousel-item");
 
     this.pane_width = 0;
     this.pane_count = this.$panes.length;
 
     this.current_pane = 0;
-    this.init();
 
     this.$element.hammer({ drag_lock_to_axis: true })
       .on("release dragleft dragright swipeleft swiperight", $.proxy(this.handleHammer, this));
 
-
-    // hammerjs tap with jquery mobile tap
-    // control btn mainly for mouse usage
-    // $('.carousel-control').hammer().on('tap', function(e) {
     var self = this;
-    $('.carousel-control').on('click', function(e) {
 
-      var $this = $(this);
-      var control = $this.attr('data-carousel');
-
-      if(control === 'prev') {
-        self.prev();
-      } else if(control === 'next') {
-        self.next();
-      }
-      return false;
-    });
-  }
-
-
-  Carousel.prototype.init = function() {
-    var self = this;
     this.$panes.first().addClass('carousel-active');
-    this.setPaneDimensions();
+    // this.setPaneDimensions();
     this.updateControl();
 
     $(window).on("load resize orientationchange", function() {
       self.setPaneDimensions();
       //updateOffset();
     });
-  };
 
+    // hammerjs tap with jquery mobile tap
+    // control btn mainly for mouse usage
+    // $('.carousel-control').hammer().on('tap', function(e) {
+    // var self = this;
+    // $('.carousel-control').on('click', function(e) {
+
+    //   var $this = $(this);
+    //   var control = $this.attr('data-carousel');
+
+    //   if(control === 'prev') {
+    //     self.prev();
+    //   } else if(control === 'next') {
+    //     self.next();
+    //   }
+    //   return false;
+    // });
+  }
 
   Carousel.prototype.setPaneDimensions = function() {
     this.pane_width = this.$element.width();
+
+    console.log('%c this.pane_width = ' + this.pane_width, 'color: green');
+    var self = this;
     this.$panes.each(function() {
       $(this).width(self.pane_width);
     });
@@ -77,11 +75,14 @@
 
 
   Carousel.prototype.showPane = function(index) {
+    console.log('%c show pane ' + index, 'color: green');
+
+
     // between the bounds
-    index = Math.max(0, Math.min(index, self.pane_count-1));
+    index = Math.max(0, Math.min(index, this.pane_count-1));
     this.current_pane = index;
 
-    var offset = -((100/self.pane_count)*self.current_pane);
+    var offset = -((100/this.pane_count)*this.current_pane);
     this.setContainerOffset(offset, true);
     this.updateControl();
 
@@ -108,10 +109,16 @@
   };
 
   Carousel.prototype.next = function() {
+    console.log('%c next', 'color: green');
+
+    console.log(this.current_pane);
+
     return this.showPane(this.current_pane+1, true);
   };
 
   Carousel.prototype.prev = function() {
+    console.log('%c prev', 'color: green');
+
     return this.showPane(this.current_pane-1, true);
   };
 
@@ -120,6 +127,8 @@
     var self = this;
     // disable browser scrolling
     ev.gesture.preventDefault();
+
+    console.log(ev);
 
     switch(ev.type) {
       case 'dragright':
