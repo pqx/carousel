@@ -39,9 +39,9 @@ carousel plugin with jquery and hammer.js
 ```
 ## Usage
 ``` javascript
-$('#js-carousel').carousel();
-$('#js-carousel').carousel('prev');
-$('#js-carousel').carousel('next');
+$('#js-carousel').carousel(); // initialization
+$('#js-carousel').carousel('prev'); // action prev item
+$('#js-carousel').carousel('next'); // action next item
 ```
 
 
