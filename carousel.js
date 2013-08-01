@@ -20,13 +20,14 @@
 
     this.current_pane = 0;
 
-    this.$element.hammer({ drag_lock_to_axis: true })
+    Hammer(this.element)
       .on("release dragleft dragright swipeleft swiperight", $.proxy(this.handleHammer, this));
+    // this.$element.hammer({ drag_lock_to_axis: true })
 
     var self = this;
 
     this.$panes.first().addClass('carousel-active');
-    // this.setPaneDimensions();
+    this.setPaneDimensions();
     this.updateControl();
 
     $(window).on("load resize orientationchange", function() {
@@ -136,7 +137,7 @@
     // disable browser scrolling
     ev.gesture.preventDefault();
 
-    // console.log(ev);
+    console.log(ev);
 
     if(this.init) {
       this.$panes.css('display', 'inline-block');
