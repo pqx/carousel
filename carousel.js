@@ -15,6 +15,9 @@
     this.$panes = this.$container.find(".carousel-item");
     this.$active = this.$panes.first();
 
+    this.$left_control = this.$element.find('.carousel-control.left');
+    this.$right_control = this.$element.find('.carousel-control.right');
+
     this.pane_width = 0;
     this.pane_count = this.$panes.length;
 
@@ -41,16 +44,13 @@
     // hammerjs tap with jquery mobile tap
     // control btn mainly for mouse usage
     // $('.carousel-control').hammer().on('tap', function(e) {
-    $('.carousel-control').on('click', function(e) {
 
-      var $this = $(this);
-      var control = $this.attr('data-carousel');
-
-      if(control === 'prev') {
-        self.prev();
-      } else if(control === 'next') {
-        self.next();
-      }
+    this.$left_control.on('click', function(e) {
+      self.prev();
+      return false;
+    });
+    this.$right_control.on('click', function(e) {
+      self.next();
       return false;
     });
   }
@@ -66,13 +66,13 @@
   };
 
   Carousel.prototype.updateControl = function() {
-    var $left = $('.left.carousel-control').show();
-    var $right = $('.right.carousel-control').show();
+    this.$left_control.show();
+    this.$right_control.show();
     if(this.current_pane ===  0) {
-      $left.hide();
+      this.$left_control.hide();
     }
     if(this.current_pane === this.pane_count - 1) {
-      $right.hide();
+      this.$right_control.hide();
     }
   };
 
