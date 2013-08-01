@@ -1,0 +1,37 @@
+.carousel-wrap {
+  overflow: hidden;
+  position: relative;
+}
+.carousel-inner {
+  white-space: nowrap;
+  /*-webkit-transition: -webkit-transform 0.05s linear;*/
+}
+.carousel-item {
+  display: inline-block;
+  text-align: center;
+}
+.carousel-active {
+  display: inline-block;
+}
+.carousel-item img {
+  width: 100%;
+  vertical-align: top;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.carousel-control {
+  position: absolute;
+  top: 50%;
+  font-size: 32px;
+}
+.carousel-control.left {
+  left: 7px;
+}
+.carousel-control.right {
+  right: 7px;
+}
