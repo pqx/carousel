@@ -36,11 +36,3 @@
 .carousel-control.right {
   right: 7px;
 }
-
-.details {
-  width: inherit;
-  padding: 10px;
-  box-sizing: border-box;
-  white-space: normal;
-  text-align: left;
-}

@@ -1,7 +1,9 @@
 ;(function($) {
   var pluginName = 'carousel';
 
-  var defaults = {};
+  var defaults = {
+    // layout: 'insert' // insert or page
+  };
 
   function Carousel(element, options) {
     this.options = $.extend({}, defaults, options);
@@ -90,7 +92,13 @@
     this.$active = $(this.$panes.get(index)).addClass('carousel-active');
 
     // update container height for following content
+
+    // if(this.options.layout === 'page') {
+    //   this.$container.height($(window).height());
+    // } else {
+    // this.$panes.css('display', 'none');
     this.$container.height(this.$active.height());
+    // }
   };
 
 
