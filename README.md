@@ -5,7 +5,7 @@ carousel plugin with jquery and hammer.js
 
 [bootstrap-carousel.js](https://github.com/twbs/bootstrap/blob/master/js/bootstrap-carousel.js)
 
-[Hammer.js carousel example](https://github.com/twbs/bootstrap/blob/master/js/bootstrap-carousel.js)
+[Hammer.js carousel example](http://eightmedia.github.io/hammer.js/examples/carousel.html)
 
 ### HTML markup
 ``` html
